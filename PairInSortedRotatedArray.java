@@ -14,23 +14,32 @@ public class PairInSortedRotatedArray {
 		
 		min = max + 1;
 		
-		while(max > min) {
+		while(max != min) {
 			int sum = arr[max] + arr[min];
-			if (sum == x)
-				System.out.print("True. The pair is (" + arr[max] + ", " + arr[min] + ".");
-			else if(sum > x)
+			if (sum == x) {
+				System.out.print("True. The pair is (" + arr[max] + ", " + arr[min] + ").");
+				return;
+			}
+			else if(sum > x) {
 				max--;
+				if (max < 0)
+					max = arr.length - 1;
+			}
 			else
 				min++;
+				if (min == arr.length)
+				min = 0;
 		}
+		
+		System.out.print("Pair not found.");
 	}
 	
 	public static void main(String[] args) {
 		
 		PairInSortedRotatedArray p = new PairInSortedRotatedArray();
 		
-		int arr[] = {11, 15, 6, 8, 9, 10};
-		int x = 16;
+		int arr[] = {11, 15, 26, 38, 9, 10};
+		int x = 45;
 		
 		p.findPair(arr, x);
 	}
